@@ -31,6 +31,20 @@ h1{
     flex: 2;
     background-color: rgb(88, 88, 88);
     border-radius: 12.5px;
+    display: flex;
+}
+
+#operationDisplay {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+#operationDisplay>h3{
+    color: rgb(214, 214, 214);
+    font-size: 1.75rem;
 }
 
 .calcRow {
