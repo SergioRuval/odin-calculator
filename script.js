@@ -40,15 +40,11 @@ function operate(op, a, b){
     switch(op){
         case '+':
             return add(a, b);
-            break;
         case '-':
             return substract(a, b);
-            break;
         case '*':
             return multiply(a, b);
-            break;
         case '/':
             return divide(a, b);
-            break;
     }
 }
