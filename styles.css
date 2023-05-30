@@ -48,6 +48,10 @@ h1{
     font-size: 1.5rem;
 }
 
-.calcButton:hover {
+.buttonHover {
     background-color: rgb(70, 70, 70);
+}
+
+.buttonPressed {
+    background-color: rgb(50, 50, 50);
 }
