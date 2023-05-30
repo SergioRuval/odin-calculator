@@ -4,3 +4,36 @@
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+h1{
+    text-align: center;
+    padding: 25px;
+}
+
+#mainContainer {
+    display: flex;
+    justify-content: center;
+    padding: 25px;
+}
+
+#calculator {
+    background-color: rgb(58, 58, 58);
+    padding: 25px;
+    border-radius: 12.5px;
+    height: 75vh;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 12.5px;
+}
+
+#inputRow {
+    flex: 2;
+}
+
+.calcRow {
+    padding: 25px;
+    background-color: rgb(88, 88, 88);
+    border-radius: 12.5px;
+    flex: 1;
+}
