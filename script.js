@@ -2,6 +2,7 @@ const calcButtons = document.querySelectorAll(".calcButton");
 const numberButtons = document.querySelectorAll(".calcNumber");
 const opButtons = document.querySelectorAll(".calcOp");
 const calcDisplay = document.querySelector("#operationDisplay>h3");
+const clearAllButton = document.querySelector("#clearAll");
 
 calcButtons.forEach(button => {
     button.addEventListener('mouseenter', e => {
@@ -30,7 +31,9 @@ opButtons.forEach(button => {
         assignOperator(e.target.textContent);
         updateScreen();
     });
-})
+});
+
+clearAllButton.addEventListener('click', clearInputs);
 
 let numA = numB = op = undefined;
 
@@ -129,4 +132,11 @@ function updateScreen(){
     }
 
     calcDisplay.textContent = displayText;
+}
+
+function clearInputs(e){
+    numA = undefined;
+    op = undefined;
+    numB = undefined;
+    updateScreen();
 }
