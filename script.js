@@ -22,14 +22,12 @@ calcButtons.forEach(button => {
 numberButtons.forEach(button => {
    button.addEventListener('click', e => {
         assignValues(e.target.textContent);
-        updateScreen();
    });
 });
 
 opButtons.forEach(button => {
     button.addEventListener('click', e => {
         assignOperator(e.target.textContent);
-        updateScreen();
     });
 });
 
@@ -73,26 +71,40 @@ function assignValues(value){
     // If the second number has already been given, then we appen it's value
     if(numB !== undefined){
         numB += value;
+        updateScreen();
         return;
     }
     
     // If the operator has already been given, and the second number hasn't, then we store it
     if(op !== undefined && numB === undefined){
         numB = value;
+        updateScreen();
         return;
     }
     
     //If the first number has already been given, and the operator hasn't, then we append it's value
     if(numA !== undefined && op === undefined){
         numA += value;
+        updateScreen();
         return;
     }
     
     // If the first number hasn't been given, then we can store it
     numA = value;
+    updateScreen();
 }
 
 function assignOperator(operator){
+    // The only thing we must check is if the button is the Equals
+    if(operator === '='){
+        // If all inputs were given, then we can operate
+        if(isReadyToOperate()){
+            let result = operate(op, Number.parseInt(numA), Number.parseInt(numB));
+            showResult(result);
+        }
+        // In this case we should call the operate function
+        return;
+    }
     // If the first number has't already been given, then we can't store the operator
     if(numA === undefined){
         return;
@@ -105,12 +117,8 @@ function assignOperator(operator){
 
     // In any other case, we can store the operator
     // This includes the case where the operator must be replaced
-    // The only thing we must check is if the button is the Equals
-    if(operator === '=')
-        // In this case we should call the operate function
-        return;
-
     op = operator;
+    updateScreen();
 }
 
 function updateScreen(){
@@ -132,6 +140,14 @@ function updateScreen(){
     }
 
     calcDisplay.textContent = displayText;
+}
+
+function showResult(result){
+    calcDisplay.textContent = result;
+}
+
+function isReadyToOperate(){
+    return (numA !== undefined && op !== undefined && numB !== undefined);
 }
 
 function clearInputs(e){
