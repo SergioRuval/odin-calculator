@@ -1,6 +1,7 @@
 const calcButtons = document.querySelectorAll(".calcButton");
 const numberButtons = document.querySelectorAll(".calcNumber");
 const opButtons = document.querySelectorAll(".calcOp");
+const calcDisplay = document.querySelector("#operationDisplay>h3");
 
 calcButtons.forEach(button => {
     button.addEventListener('mouseenter', e => {
@@ -20,18 +21,14 @@ calcButtons.forEach(button => {
 numberButtons.forEach(button => {
    button.addEventListener('click', e => {
         assignValues(e.target.textContent);
-        console.log(numA + " is numA");
-        console.log(op + " is the op");
-        console.log(numB + " is numB");
+        updateScreen();
    });
 });
 
 opButtons.forEach(button => {
     button.addEventListener('click', e => {
         assignOperator(e.target.textContent);
-        console.log(numA + " is numA");
-        console.log(op + " is the op");
-        console.log(numB + " is numB");
+        updateScreen();
     });
 })
 
@@ -111,4 +108,25 @@ function assignOperator(operator){
         return;
 
     op = operator;
+}
+
+function updateScreen(){
+    let displayText = "";
+
+    // If the first number is not undefined, then we add it to the result
+    if(numA !== undefined){
+        displayText += numA + " ";
+    }
+
+    // If the operator is not undefined, then we add it to the result
+    if(op !== undefined){
+        displayText += op + " ";
+    }
+
+    // If the last number is not undefined, then we add it to the result
+    if(numB !== undefined){
+        displayText += numB;
+    }
+
+    calcDisplay.textContent = displayText;
 }
