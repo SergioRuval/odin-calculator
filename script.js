@@ -60,7 +60,7 @@ function operate(op, a, b){
             return add(a, b);
         case '-':
             return substract(a, b);
-        case '*':
+        case 'x':
             return multiply(a, b);
         case '/':
             return divide(a, b);
@@ -99,8 +99,7 @@ function assignOperator(operator){
     if(operator === '='){
         // If all inputs were given, then we can operate
         if(isReadyToOperate()){
-            let result = operate(op, Number.parseInt(numA), Number.parseInt(numB));
-            showResult(result);
+            getResult();
         }
         // In this case we should call the operate function
         return;
@@ -140,6 +139,13 @@ function updateScreen(){
     }
 
     calcDisplay.textContent = displayText;
+}
+
+function getResult(){
+    let result = operate(op, Number.parseInt(numA), Number.parseInt(numB));
+    numA = result;
+    op = numB = undefined;
+    showResult(result);
 }
 
 function showResult(result){
