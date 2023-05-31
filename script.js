@@ -4,6 +4,8 @@ const opButtons = document.querySelectorAll(".calcOp");
 const calcDisplay = document.querySelector("#operationDisplay>h3");
 const clearAllButton = document.querySelector("#clearAll");
 
+let previousResultFlag = false;
+
 calcButtons.forEach(button => {
     button.addEventListener('mouseenter', e => {
         e.target.classList.add("buttonHover");
@@ -68,13 +70,19 @@ function operate(op, a, b){
 }
 
 function assignValues(value){
-    // If the second number has already been given, then we appen it's value
+    // If the second number has already been given, then we append it's value
     if(numB !== undefined){
         numB += value;
         updateScreen();
         return;
     }
     
+    // If we have a previous value, and we input a new number without selecting an operator
+    // then we clear all values
+    if(previousResultFlag && op === undefined){
+        clearInputs();
+    }
+
     // If the operator has already been given, and the second number hasn't, then we store it
     if(op !== undefined && numB === undefined){
         numB = value;
@@ -147,7 +155,8 @@ function updateScreen(){
 function getResult(){
     let result = operate(op, Number.parseInt(numA), Number.parseInt(numB));
     numA = result;
-    numB = undefined;
+    previousResultFlag = true;
+    op = numB = undefined;
     showResult(result);
 }
 
@@ -160,6 +169,7 @@ function isReadyToOperate(){
 }
 
 function clearInputs(e){
+    previousResultFlag = false;
     numA = undefined;
     op = undefined;
     numB = undefined;
