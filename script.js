@@ -111,6 +111,9 @@ function assignOperator(operator){
 
     // If the second number has already been given, we can't store the operator
     if(numB !== undefined){
+        // But we can use the result to calculate the nex one
+        getResult();
+        op = operator;
         return;
     }
 
