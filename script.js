@@ -144,7 +144,7 @@ function updateScreen(){
 function getResult(){
     let result = operate(op, Number.parseInt(numA), Number.parseInt(numB));
     numA = result;
-    op = numB = undefined;
+    numB = undefined;
     showResult(result);
 }
 
